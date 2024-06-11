@@ -32,8 +32,8 @@ function SSHConnectReady {
 function sendScripts {
   ssh -o StrictHostKeyChecking=no "$userName"@"$ipVM" 'rm -rf ~/installDocker.sh'
   ssh -o StrictHostKeyChecking=no "$userName"@"$ipVM" 'rm -rf ~/firstContainer.sh'
-  scp -o StrictHostKeyChecking=no /home/augustin/Desktop/docker/scripts/installDocker.sh  "$userName"@"$ipVM":~/
-  scp -o StrictHostKeyChecking=no /home/augustin/Desktop/docker/scripts/firstContainer.sh "$userName"@"$ipVM":~/
+  scp -o StrictHostKeyChecking=no /home/augustin/Desktop/docker/scripts/simpleApacheHelloWorld/installDocker.sh  "$userName"@"$ipVM":~/
+  scp -o StrictHostKeyChecking=no /home/augustin/Desktop/docker/scripts/simpleApacheHelloWorld/firstContainer.sh "$userName"@"$ipVM":~/
 }
 function runScripts {
   port=$1

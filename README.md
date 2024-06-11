@@ -5,7 +5,7 @@ I made a docker image once, 2 months ago.
 # Mono service : deployment of an apache2 server
 If you allready have de VM, run the script with the command :
 ```bash 
-bash ./scripts/testOnVM.sh userName VMName domainName
+bash ./scripts/simpleApacheHelloWorld/testOnVM.sh userName VMName domainName
 ```
 ## docker installation
 
