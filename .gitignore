@@ -1,1 +1,3 @@
-getting-started-app/.dockerignore
+./getting-started-app/.dockerignore
+./getting-started-app/README.md
+./getting-started-app/yarn.lock
