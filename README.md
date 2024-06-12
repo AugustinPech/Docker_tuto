@@ -1,6 +1,9 @@
 ## knowledge at day 0
 
 I made a docker image once, 2 months ago.
+This repository shows 3 days of work from scratch.
+
+I followed the [tutorial](https://docs.docker.com/get-started/07_multi_container/) on the official documentation to learn the basics.
 
 # Mono service : deployment of an apache2 server
 If you allready have de VM, run the script with the command :
