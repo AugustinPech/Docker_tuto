@@ -59,15 +59,26 @@ the docker compose file manage the interaction between containers in the app.
 2. seed the docker file :
 
     the example shows the dockerfile of an app running on node.js
-    ```dockerfile
-        # syntax=docker/dockerfile:1
-
-        FROM node:18-alpine # base image
-        WORKDIR /app # WD inside the image
-        COPY . . # copy cwd in the wd in docker (pwd > /target/app)
-        RUN yarn install --production # install production "dependencies" from package.js but not "devDependencies"
-        CMD ["node", "src/index.js"] # runs the command node src/index.js
-        EXPOSE 3000 # listening port of the image
+    ```bash
+    # syntax=docker/dockerfile:1
+    FROM node:18-alpine # base image
+    WORKDIR /app # WD inside the image
+    COPY . . # copy cwd in the wd in docker (pwd > /target/app)
+    RUN yarn install --production # install production "dependencies" from package.js but not "devDependencies"
+    CMD ["node", "src/index.js"] # runs the command node src/index.js
+    EXPOSE 3000 # listening port of the image
+    ```
+    this example shows the dockerfile of a python flask app 
+    ```bash
+    FROM python:3.9-alpine # base image
+    COPY requirements.txt requirements.txt # copy the file containing the list a necessary installation
+    RUN pip install -r requirements.txt # pip install each element
+    COPY . /microblog # copy the current directory in the container
+    WORKDIR /microblog # set WD
+    RUN chmod a+x boot.sh # boot.sh is executable
+    ENV FLASK_APP microblog.py
+    ENV CONTEXT PROD
+    ENTRYPOINT ["./boot.sh"] # the boot script runs on container run
     ```
 
 3. build the image
@@ -198,6 +209,8 @@ services:
       MYSQL_USER: root
       MYSQL_PASSWORD: secret
       MYSQL_DB: myDB
+    networks:
+      - myNet
 
   mysql: # 2nd service
     image: mysql:8.0
@@ -206,7 +219,29 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: secret
       MYSQL_DATABASE: myDB
-
+    networks:
+      - myNet
 volumes:
   app-mysql-data:
+```
+
+```bash
+docker compose up
+docker compose down
+```
+
+#### override
+?? to search for
+#### multistage builds
+you can stucture your Dockerfile with multiple `FROM image` closes. like in the example : 
+```bash
+FROM golang:1.21 as build # image is loaded with an alias
+WORKDIR /src
+COPY ./main.go /src
+RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o /bin/hello /src/main.go
+
+FROM scratch
+COPY --from=build /bin/hello /bin/hello # from the previous image (refered with it's alias) : copies the compiled file 
+#COPY --from=0 /bin/hello /bin/hello # same without alias : from image number 0
+CMD ["/bin/hello"]
 ```
