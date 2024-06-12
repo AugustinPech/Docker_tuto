@@ -3,8 +3,8 @@
 I made a docker image once, 2 months ago.
 This repository shows 3 days of work from scratch.
 
-I followed the [tutorial](https://docs.docker.com/get-started/07_multi_container/) on the official documentation to learn the basics.
-
+* In [this directory](getting-started-app), I followed the [tutorial](https://docs.docker.com/get-started/07_multi_container/) on the official documentation to learn the basics about running containers, following logs and docker compose.
+* In [this directory](microblog) I followed part of a [tutorial](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-xix-deployment-on-docker-containers) to learn the basics about the docker file. 
 # Mono service : deployment of an apache2 server
 If you allready have de VM, run the script with the command :
 ```bash 
