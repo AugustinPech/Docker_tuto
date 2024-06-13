@@ -38,7 +38,7 @@ Werkzeug==0.14.1
 WTForms==2.1
 
 # requirements for running in Production settings
-gunicorn==19.7.1
+gunicorn==22.0.0
 
 # requirements for using Postgres databases
 #psycopg2==2.7.3.1
